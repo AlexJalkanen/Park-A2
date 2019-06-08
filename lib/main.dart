@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Navigation Basics',
+    title: 'Park A2',
     home: HomePage(),
+    theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
   ));
 }
 
