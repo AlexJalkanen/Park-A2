@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyApp()),
+              MaterialPageRoute(builder: (context) => Map()),
             );
           },
         ),
@@ -34,44 +34,21 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class MyApp extends StatefulWidget {
+class Map extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _MapPage createState() => _MapPage();
 }
 
-class _MyAppState extends State<MyApp> {
-  Completer<GoogleMapController> _controller = Completer();
+class _MapPage extends State<Map> {
+   Completer<GoogleMapController> _controller = Completer();
 
   static const LatLng _center = const LatLng(45.521563, -122.677433);
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Maps Sample App'),
-          backgroundColor: Colors.green[700],
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/*
-class MapPage extends StatelessWidget {
-  @override
   
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -87,4 +64,3 @@ class MapPage extends StatelessWidget {
     );
   }
 }
-*/
