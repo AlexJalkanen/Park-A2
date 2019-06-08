@@ -1,7 +1,54 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    title: 'Navigation Basics',
+    home: HomePage(),
+  ));
+}
 
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          child: Text('Open Map'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MapPage()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class MapPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Map"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+              Navigator.pop(context);
+            },
+          child: Text('Back to Home Page'),
+        ),
+      ),
+    );
+  }
+}
+
+/*
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -109,3 +156,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
