@@ -31,14 +31,32 @@ class _MapPage extends State<Map> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
-      body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 14.0,
+      appBar: AppBar(
+        title: Text("Map"),
+      ),
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 11.0,
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: FloatingActionButton(
+                onPressed: () => print('button pressed'),
+                materialTapTargetSize: MaterialTapTargetSize.padded,
+                backgroundColor: Colors.green,
+                child: const Icon(Icons.map, size: 36.0),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
