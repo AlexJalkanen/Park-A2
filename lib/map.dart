@@ -166,7 +166,6 @@ class _MapPage extends State<MapDisplay> {
           ),
         );
       });
-
   }
 
   Column build_container (String name) {
@@ -222,7 +221,7 @@ class _MapPage extends State<MapDisplay> {
    position: LatLng(42.2805163, -83.7481832),
 
    infoWindow: InfoWindow(title: 'Fourth and Washington Structure', snippet: 'Fourth and Washington Structure'),
-       onTap: () => _onPressed("name", Four_and_Wash_Count)
+       onTap: () => _onPressed("Fourth & Washington Structure", Four_and_Wash_Count)
    ),
    );
    _markers.add(
@@ -230,7 +229,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('firstandwashington'),
    position: LatLng(42.2804774, -83.7500788),
    infoWindow: InfoWindow(title: 'First and Washington Structure', snippet: 'First and Washington Structure'),
-       onTap: () => _onPressed('First & Washington Structure', "5" /*, parkMap[1]*/)
+       onTap: () => _onPressed('First & Washington Structure', Fir_and_Wash_Count)
    ),
    );
    _markers.add(
@@ -238,7 +237,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('maynard'),
    position: LatLng(42.2789278, -83.7421086),
    infoWindow: InfoWindow(title: 'Maynard Structure', snippet: 'Maynard Structure'),
-       onTap: () => _onPressed('Maynard Structure', "5"/*, parkMap[2]*/)
+       onTap: () => _onPressed('Maynard Structure', Maynard_Count)
    ),
    );
    _markers.add(
@@ -246,7 +245,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('forest'),
    position: LatLng(42.2743915, -83.733201),
    infoWindow: InfoWindow(title: 'Forest Structure', snippet: 'Forest Structure'),
-       onTap: () => _onPressed('Forest Structure', "5"/*, parkMap[3]*/)
+       onTap: () => _onPressed('Forest Structure', Forest_Count)
    ),
    );
    _markers.add(
@@ -254,7 +253,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('fourthandwilliam'),
    position: LatLng(42.2784615, -83.7477646),
    infoWindow: InfoWindow(title: 'Fourth and William Structure', snippet: 'Fourth and William Structure'),
-       onTap: () => _onPressed('Fourth & William Structure', "5"/*, parkMap[4]*/)
+       onTap: () => _onPressed('Fourth & William Structure', Four_and_Will_Count)
    ),
    );
    _markers.add(
@@ -262,7 +261,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('libertysquare'),
    position: LatLng(42.280283, -83.7428007),
    infoWindow: InfoWindow(title: 'Liberty Square Structure', snippet: 'Liberty Square Structure'),
-       onTap: () => _onPressed('Liberty Square Structure', "5"/*, parkMap[5]*/)
+       onTap: () => _onPressed('Liberty Square Structure', Lib_Square_Count)
    ),
    );
    _markers.add(
@@ -270,7 +269,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('annashley'),
    position: LatLng(42.2826333, -83.7496376),
    infoWindow: InfoWindow(title: 'Ann Ashley Structure', snippet: 'Ann Ashley Structure'),
-       onTap: () => _onPressed('Ann Ashley Structure', "5" /*, parkMap[6]*/)
+       onTap: () => _onPressed('Ann Ashley Structure', Ann_Ash_Count)
    ),
    );
    _markers.add(
@@ -278,7 +277,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('libertylane'),
    position: LatLng(42.2787552,-83.7455673),
    infoWindow: InfoWindow(title: 'Liberty Lane Structure', snippet: 'Liberty Lane Structure'),
-       onTap: () => _onPressed('Library Lane Structure', "5"/*, parkMap[7]*/)
+       onTap: () => _onPressed('Library Lane Structure', Lib_Lane_Count)
    ),
    );
    _markers.add(
@@ -286,7 +285,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('southashley'),
    position: LatLng(42.2793726, -83.7498497),
    infoWindow: InfoWindow(title: 'South Ashley Lot', snippet: 'South Ashley Lot'),
-       onTap: () => _onPressed('South Ashley Lot', "5" /*, parkMap[8]*/)
+       onTap: () => _onPressed('South Ashley Lot', South_Ash_Count)
    ),
    );
    }
