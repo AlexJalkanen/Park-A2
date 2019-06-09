@@ -2,8 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-void main() {
-  
+import 'package:a2hackathon/parser.dart' as parser;
+
+void main(List<String> arguments) async {
   runApp(MaterialApp(
     
     title: 'Park A2',
