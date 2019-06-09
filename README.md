@@ -1,16 +1,22 @@
-# a2hackathon
+# Park A2
 
-A new Flutter project.
+App developed for Hack:A2 that allows users to easily and efficiently locate parking availabilty.
 
-## Getting Started
+Featuring live data of parking structure remaining spots, and baseline for future implementation of
+metered parking availability.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Running Park A2
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This project is created in Dart using Flutter.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Download Flutter at: https://flutter.dev/docs/get-started/install.
+
+Dependencies:
+  - google_maps_flutter: ^0.5.6
+  - html: any
+  - http: any
+  - cupertino_icons: ^0.1.2
+  - permission_handler: ^3.1.0
+  - frideos: ^0.6.2
+  - frideos_core: ^0.4.4
