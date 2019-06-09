@@ -25,16 +25,16 @@ class _MapPage extends State<MapDisplay> {
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
    Set<Marker> _markers;
-   String Four_and_Wash_Count;
-   String Fir_and_Wash_Count;
-   String Maynard_Count;
-   String Forest_Count;
-   String Four_and_Will_Count;
-   String Lib_Square_Count;
-   String Ann_Ash_Count;
-   String Lib_Lane_Count;
-   String South_Ash_Count;
-   String Price;
+   String Four_and_Wash_Count = "100";
+   String Fir_and_Wash_Count = "100";
+   String Maynard_Count = "100";
+   String Forest_Count = "100";
+   String Four_and_Will_Count = "100";
+   String Lib_Square_Count = "100";
+   String Ann_Ash_Count = "100";
+   String Lib_Lane_Count = "100";
+   String South_Ash_Count = "100";
+   String Price = "100";
 
    GoogleMapController controller;
     Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
@@ -112,35 +112,63 @@ class _MapPage extends State<MapDisplay> {
        var structure = string.substring(42, string.indexOf(" - "));
        switch(count) {
          case 0:
-           Four_and_Wash_Count = spaces;
+           setState(() {
+              Four_and_Wash_Count = spaces;
+           });
            break;
          case 1:
-           Fir_and_Wash_Count = spaces;
+         setState(() {
+              Fir_and_Wash_Count = spaces;
+           });
+           
            break;
          case 2:
-           Maynard_Count = spaces;
+         setState(() {
+              Maynard_Count = spaces;
+           });
+           
            break;
          case 3:
-           Forest_Count = spaces;
+         setState(() {
+             Forest_Count = spaces;
+           });
+           
            break;
          case 4:
-           Four_and_Will_Count = spaces;
+         setState(() {
+              Four_and_Will_Count = spaces;
+           });
+           
            break;
          case 5:
-           Lib_Square_Count = spaces;
+         setState(() {
+              Lib_Square_Count = spaces;
+           });
+           
            break;
          case 6:
-           Ann_Ash_Count = spaces;
+         setState(() {
+              Ann_Ash_Count = spaces;
+           });
+           
            break;
          case 7:
-           Lib_Lane_Count = spaces;
+         setState(() {
+              Lib_Lane_Count = spaces;
+           });
+           
            break;
          case 8:
-           South_Ash_Count = spaces;
+         setState(() {
+              South_Ash_Count = spaces;
+           });
+           
            break;
        }
        count++;
      }
+     removeMarkers();
+     setMarkers();
    }
 
    @override
@@ -421,6 +449,18 @@ class _MapPage extends State<MapDisplay> {
     });
   }
 
+  BitmapDescriptor setColor(int capacity) {
+    if (capacity < 0) {
+      return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan);
+    }
+    if (capacity < 50) {
+      return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+    }
+    if (capacity < 400) {
+      return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
+    }
+    return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
+  }
   
   void setMarkers() {
      _markers = Set();
@@ -435,7 +475,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('fourthandwashington'),
    position: LatLng(42.2805163, -83.7481832),
-
+    icon: setColor(int.parse(Four_and_Wash_Count)),
    infoWindow: null,
        onTap: () => _onPressed("Fourth & Washington Structure", Four_and_Wash_Count, "\$1.20/hour")
    ),
@@ -443,6 +483,7 @@ class _MapPage extends State<MapDisplay> {
    _markers.add(
    Marker(
    markerId: MarkerId('firstandwashington'),
+   icon: setColor(int.parse(Fir_and_Wash_Count)),
    position: LatLng(42.2804774, -83.7500788),
    infoWindow: null,
        onTap: () => _onPressed('First & Washington Structure', Fir_and_Wash_Count, "\$1.20/hour")
@@ -451,6 +492,7 @@ class _MapPage extends State<MapDisplay> {
    _markers.add(
    Marker(
    markerId: MarkerId('maynard'),
+   icon: setColor(int.parse(Maynard_Count)),
    position: LatLng(42.2789278, -83.7421086),
    infoWindow: null,
        onTap: () => _onPressed('Maynard Structure', Maynard_Count, "\$1.20/hour")
@@ -460,6 +502,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('forest'),
    position: LatLng(42.2743915, -83.733201),
+   icon: setColor(int.parse(Forest_Count)),
    infoWindow: null,
        onTap: () => _onPressed('Forest Structure', Forest_Count, "\$1.20/hour")
    ),
@@ -468,6 +511,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('fourthandwilliam'),
    position: LatLng(42.2784615, -83.7477646),
+   icon: setColor(int.parse(Four_and_Will_Count)),
    infoWindow: null,
        onTap: () => _onPressed('Fourth & William Structure', Four_and_Will_Count, "\$1.20/hour")
    ),
@@ -476,6 +520,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('libertysquare'),
    position: LatLng(42.280283, -83.7428007),
+   icon: setColor(int.parse(Lib_Square_Count)),
    infoWindow: null,
        onTap: () => _onPressed('Liberty Square Structure', Lib_Square_Count, "\$1.20/hour")
    ),
@@ -484,6 +529,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('annashley'),
    position: LatLng(42.2826333, -83.7496376),
+   icon: setColor(int.parse(Ann_Ash_Count)),
    infoWindow: null,
        onTap: () => _onPressed('Ann Ashley Structure', Ann_Ash_Count, "\$1.20/hour")
    ),
@@ -492,6 +538,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('libertylane'),
    position: LatLng(42.2787552,-83.7455673),
+   icon: setColor(int.parse(Lib_Lane_Count)),
    infoWindow: null,
        onTap: () => _onPressed('Library Lane Structure', Lib_Lane_Count, "\$1.20/hour")
    ),
@@ -500,6 +547,7 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('southashley'),
    position: LatLng(42.2793726, -83.7498497),
+   icon: setColor(int.parse(South_Ash_Count)),
    infoWindow: null,
        onTap: () => _onPressed('South Ashley Lot', South_Ash_Count, "\$1.70/hour")
    ),
@@ -508,8 +556,9 @@ class _MapPage extends State<MapDisplay> {
    Marker(
    markerId: MarkerId('firstandwilliam'),
    position: LatLng(42.279587, -83.751292),
+   icon: setColor(-1),
    infoWindow: null,
-      onTap: () => _onPressed('First and William Lot', 'Data Coming Soon', "\$1.60/hour for 1-3 hours \n"
+      onTap: () => _onPressed('First and William Lot', 'No Data', "\$1.60/hour for 1-3 hours \n"
        "\$1.80/hour for 4+ hours")
    ),
    );
@@ -517,62 +566,70 @@ class _MapPage extends State<MapDisplay> {
     Marker(
     markerId: MarkerId('palio'),
     position: LatLng(42.278120, -83.748300),
+    icon: setColor(-1),
     infoWindow: null,
-       onTap: () => _onPressed('Palio Lot', 'Data Coming Soon', "\$1.80/hour")
+       onTap: () => _onPressed('Palio Lot', 'No Data', "\$1.80/hour")
     ),
     );
      _markers.add(
        Marker(
            markerId: MarkerId('415washington'),
            position: LatLng(42.280266, -83.752322),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('415 W. Washington Lot', 'Data Coming Soon', "\$4 flat rate")
+           onTap: () => _onPressed('415 W. Washington Lot', 'No Data', "\$4 flat rate")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('annandmain'),
            position: LatLng(42.282183, -83.748727),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('Ann & Main St Lot', 'Data Coming Soon', "\$1.80/hour")
+           onTap: () => _onPressed('Ann & Main St Lot', 'No Data', "\$1.80/hour")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('fourthandcatherine'),
            position: LatLng(42.283579, -83.747332),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('Fourth and Catherine Lot', 'Data Coming Soon', "\$1.80/hour")
+           onTap: () => _onPressed('Fourth and Catherine Lot', 'No Data', "\$1.80/hour")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('farmer'),
            position: LatLng(42.283579, -83.747332),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('Farmer\'s Market Lot', 'Data Coming Soon', "\$1.80/hour")
+           onTap: () => _onPressed('Farmer\'s Market Lot', 'No Data', "\$1.80/hour")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('community'),
            position: LatLng(42.283727, -83.745398),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('Community High Lot', 'Data Coming Soon', "\$1.80/hour")
+           onTap: () => _onPressed('Community High Lot', 'No Data', "\$1.80/hour")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('kerrytown'),
            position: LatLng(42.284477, -83.746819),
+           icon: setColor(-1),
            infoWindow: null,
-           onTap: () => _onPressed('Kerrytown Lot', 'Data Coming Soon', "\$1.80/hour")
+           onTap: () => _onPressed('Kerrytown Lot', 'No Data', "\$1.80/hour")
        ),
      );
      _markers.add(
        Marker(
            markerId: MarkerId('greenrd'),
            position: LatLng(42.299948, -83.693689),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Green Road Park & Ride', 'No Data', "Free")
        ),
@@ -581,6 +638,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('millerrd'),
            position: LatLng(42.298336, -83.788568),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Miller Road Park & Ride', 'No Data', "Free")
        ),
@@ -589,6 +647,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('pioneer'),
            position: LatLng(42.262449, -83.751942),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Pioneer High School Park & Ride', 'No Data', "Free")
        ),
@@ -597,6 +656,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('plymouth'),
            position: LatLng(42.305102, -83.688573),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Plymouth Road Park & Ride', 'No Data', "Free")
        ),
@@ -605,6 +665,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('statestreetcommuter'),
            position: LatLng(42.248734, -83.740780),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('State Street: Commuter Lot Park & Ride', 'No Data', "Free")
        ),
@@ -613,6 +674,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('statestreettennis'),
            position: LatLng(42.252746, -83.743286),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('State Street: U-M Tennis Center Lot Park & Ride', 'No Data', "Free")
        ),
@@ -621,6 +683,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('ypsi'),
            position: LatLng(42.242735, -83.615455),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Ypsilanti Transit Center Park & Ride', 'No Data', "Free")
        ),
@@ -629,6 +692,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('meijer'),
            position: LatLng(42.233294, -83.678516),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Meijer Park & Ride', 'No Data', "Free")
        ),
@@ -637,6 +701,7 @@ class _MapPage extends State<MapDisplay> {
        Marker(
            markerId: MarkerId('washtenaw'),
            position: LatLng(42.255126, -83.677953),
+           icon: setColor(-1),
            infoWindow: null,
            onTap: () => _onPressed('Washtenaw County Service Center Park & Ride', 'No Data', "Free")
        ),
