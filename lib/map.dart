@@ -473,7 +473,7 @@ class _MapPage extends State<MapDisplay> {
     }
     return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
   }
-  
+
   void setMarkers() {
      _markers = Set();
    _markers.clear();
