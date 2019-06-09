@@ -2,7 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:a2hackathon/parser.dart' as parser;
+import 'dart:convert';
+import 'package:http/http.dart';
+import 'package:html/parser.dart';
+import 'package:html/dom.dart';
 
 class MapDisplay extends StatefulWidget {
   @override
@@ -19,6 +22,29 @@ class _MapPage extends State<MapDisplay> {
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
    List<Map<String, dynamic>> parkMap;
+
+   Future<void> initiate () async {
+     var client = Client();
+     Response response = await client.get(
+         'https://payment.rpsa2.com/LocationAndRate/SpaceAvailability'
+     );
+     var document = parse(response.body);
+     List<Element> links = document.querySelectorAll('td');
+
+     parkMap = [];
+
+     for (var link in links) {
+       var string = link.text;
+       var spaces = string.substring(
+           (string.indexOf(" - ")) + 3, string.indexOf(" spaces"));
+       var intBoi = int.parse(spaces);
+       var structure = string.substring(42, string.indexOf(" - "));
+       parkMap.add({
+         'structure': structure,
+         'spaces': intBoi,
+       });
+     }
+   }
 
    @override
    void initState() {
@@ -88,11 +114,6 @@ class _MapPage extends State<MapDisplay> {
     );
   }
 
-
-  Future<void> setParkMap() async {
-    parkMap = await parser.initiate();
-  }
-
   void _onPressed(String name, int capacity) {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
@@ -119,8 +140,8 @@ class _MapPage extends State<MapDisplay> {
       });
   }
 
-  void updateMarkers() {
-     setParkMap();
+  void updateMarkers() async {
+     await initiate();
      setState(() {
        GoogleMap(markers: setMarkers());
      });
