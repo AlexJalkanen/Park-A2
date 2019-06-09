@@ -50,8 +50,8 @@ class _HomeState extends State<Home> {
            title: new Text('Map'),
          ),
          BottomNavigationBarItem(
-           icon: Icon(Icons.settings),
-           title: Text('Settings')
+           icon: Icon(Icons.local_parking),
+           title: Text('Options')
          )
        ],
      ),

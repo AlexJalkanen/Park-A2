@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'data/input_parser.dart';
 import 'home_widget.dart';
 import 'package:a2hackathon/parser.dart' as parser;
 

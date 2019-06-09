@@ -374,7 +374,7 @@ class _MapPage extends State<MapDisplay> {
                         setState(() => _value2 = value);
                         value == true ?  addStreets() : _remove();
                       },
-                      title: new Text('Street Parking'),
+                      title: new Text('Metered Parking'),
                       controlAffinity: ListTileControlAffinity.leading,
                       activeColor: Colors.red,
                     ),
