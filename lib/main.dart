@@ -4,8 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'data/input_parser.dart';
 
 void main() {
+  Future<AllStructures> structures = loadData();
   runApp(MaterialApp(
-    
     title: 'Park A2',
     home: Map(),
     theme: ThemeData(
