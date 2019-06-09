@@ -188,8 +188,6 @@ class _MapPage extends State<MapDisplay> {
              title: RichText(text: TextSpan(
                style: DefaultTextStyle.of(context).style,
                children: <TextSpan>[
-                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 20)),
-                 TextSpan(text: Price, style: TextStyle(fontSize: 18)),
                  TextSpan(text: 'Available Spots: \n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                  TextSpan(text: capacity, style: TextStyle(fontSize: 18)),
                  TextSpan(text: '\n'),
@@ -214,13 +212,6 @@ class _MapPage extends State<MapDisplay> {
 
   void updateMarkers() async {
      await initiate();
-     var time = new DateTime.now();
-     if(time.weekday == DateTime.sunday){
-         Price = "free\n";
-     }
-     else {
-       Price = "\$1.20\n";
-     }
   }
   
   void setMarkers() {
@@ -300,5 +291,70 @@ class _MapPage extends State<MapDisplay> {
        onTap: () => _onPressed('South Ashley Lot', South_Ash_Count, "\$1.70/hour")
    ),
    );
+   _markers.add(
+   Marker(
+   markerId: MarkerId('firstandwilliam'),
+   position: LatLng(42.279587, -83.751292),
+   infoWindow: null,
+      onTap: () => _onPressed('First and William Lot', 'Data Coming Soon', "\$1.60/hour for 1-3 hours \n"
+       "\$1.80/hour for 4+ hours")
+   ),
+   );
+    _markers.add(
+    Marker(
+    markerId: MarkerId('palio'),
+    position: LatLng(42.278120, -83.748300),
+    infoWindow: null,
+       onTap: () => _onPressed('Palio Lot', 'Data Coming Soon', "\$1.80/hour")
+    ),
+    );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('415washington'),
+           position: LatLng(42.280266, -83.752322),
+           infoWindow: null,
+           onTap: () => _onPressed('415 W. Washington Lot', 'Data Coming Soon', "\$4 flat rate")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('annandmain'),
+           position: LatLng(42.282183, -83.748727),
+           infoWindow: null,
+           onTap: () => _onPressed('Ann & Main St Lot', 'Data Coming Soon', "\$1.80/hour")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('fourthandcatherine'),
+           position: LatLng(42.283579, -83.747332),
+           infoWindow: null,
+           onTap: () => _onPressed('Fourth and Catherine Lot', 'Data Coming Soon', "\$1.80/hour")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('farmer'),
+           position: LatLng(42.283579, -83.747332),
+           infoWindow: null,
+           onTap: () => _onPressed('Farmer\'s Market Lot', 'Data Coming Soon', "\$1.80/hour")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('community'),
+           position: LatLng(42.283727, -83.745398),
+           infoWindow: null,
+           onTap: () => _onPressed('Community High Lot', 'Data Coming Soon', "\$1.80/hour")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('kerrytown'),
+           position: LatLng(42.284477, -83.746819),
+           infoWindow: null,
+           onTap: () => _onPressed('Kerrytown Lot', 'Data Coming Soon', "\$1.80/hour")
+       ),
+     );
    }
 }
