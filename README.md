@@ -20,3 +20,6 @@ Dependencies:
   - permission_handler: ^3.1.0
   - frideos: ^0.6.2
   - frideos_core: ^0.4.4
+ 
+Created by:
+Kirsten Lanigan, Duncan Davidson, Amanda Zhang, Alex Jalkanen
