@@ -428,6 +428,8 @@ class _MapPage extends State<MapDisplay> {
      //String str = parkMap[0];
      setState(() {
        
+    
+       
      
    _markers.add(
    Marker(
@@ -567,8 +569,79 @@ class _MapPage extends State<MapDisplay> {
            onTap: () => _onPressed('Kerrytown Lot', 'Data Coming Soon', "\$1.80/hour")
        ),
      );
-     });
-   }
-   
+     _markers.add(
+       Marker(
+           markerId: MarkerId('greenrd'),
+           position: LatLng(42.299948, -83.693689),
+           infoWindow: null,
+           onTap: () => _onPressed('Green Road Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('millerrd'),
+           position: LatLng(42.298336, -83.788568),
+           infoWindow: null,
+           onTap: () => _onPressed('Miller Road Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('pioneer'),
+           position: LatLng(42.262449, -83.751942),
+           infoWindow: null,
+           onTap: () => _onPressed('Pioneer High School Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('plymouth'),
+           position: LatLng(42.305102, -83.688573),
+           infoWindow: null,
+           onTap: () => _onPressed('Plymouth Road Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('statestreetcommuter'),
+           position: LatLng(42.248734, -83.740780),
+           infoWindow: null,
+           onTap: () => _onPressed('State Street: Commuter Lot Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('statestreettennis'),
+           position: LatLng(42.252746, -83.743286),
+           infoWindow: null,
+           onTap: () => _onPressed('State Street: U-M Tennis Center Lot Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('ypsi'),
+           position: LatLng(42.242735, -83.615455),
+           infoWindow: null,
+           onTap: () => _onPressed('Ypsilanti Transit Center Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('meijer'),
+           position: LatLng(42.233294, -83.678516),
+           infoWindow: null,
+           onTap: () => _onPressed('Meijer Park & Ride', 'No Data', "Free")
+       ),
+     );
+     _markers.add(
+       Marker(
+           markerId: MarkerId('washtenaw'),
+           position: LatLng(42.255126, -83.677953),
+           infoWindow: null,
+           onTap: () => _onPressed('Washtenaw County Service Center Park & Ride', 'No Data', "Free")
+       ),
+     );
+      });
+  }
 
 }
