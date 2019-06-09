@@ -21,7 +21,16 @@ class _MapPage extends State<MapDisplay> {
    CameraPosition _initialPosition = CameraPosition(target: _center, zoom: _zoom);
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
-   var parkMap;
+   Set<Marker> _markers;
+   String Four_and_Wash_Count;
+   String Fir_and_Wash_Count;
+   String Maynard_Count;
+   String Forest_Count;
+   String Four_and_Will_Count;
+   String Lib_Square_Count;
+   String Ann_Ash_Count;
+   String Lib_Lane_Count;
+   String South_Ash_Count;
 
    Future<void> initiate () async {
      var client = Client();
@@ -31,18 +40,43 @@ class _MapPage extends State<MapDisplay> {
      var document = parse(response.body);
      List<dom.Element> links = document.querySelectorAll('td');
 
-     parkMap = [];
-
+     int count = 0;
      for (var link in links) {
        var string = link.text;
        var spaces = string.substring(
            (string.indexOf(" - ")) + 3, string.indexOf(" spaces"));
        var intBoi = int.parse(spaces);
        var structure = string.substring(42, string.indexOf(" - "));
-       parkMap.add({
-         'structure': structure,
-         'spaces': intBoi,
-       });
+       switch(count) {
+         case 0:
+           Four_and_Wash_Count = spaces;
+           break;
+         case 1:
+           Fir_and_Wash_Count = spaces;
+           break;
+         case 2:
+           Maynard_Count = spaces;
+           break;
+         case 3:
+           Forest_Count = spaces;
+           break;
+         case 4:
+           Four_and_Will_Count = spaces;
+           break;
+         case 5:
+           Lib_Square_Count = spaces;
+           break;
+         case 6:
+           Ann_Ash_Count = spaces;
+           break;
+         case 7:
+           Lib_Lane_Count = spaces;
+           break;
+         case 8:
+           South_Ash_Count = spaces;
+           break;
+       }
+       count++;
      }
    }
 
@@ -93,7 +127,7 @@ class _MapPage extends State<MapDisplay> {
       body: Stack(
         children: <Widget>[
           GoogleMap(
-            markers: setMarkers(),
+            markers: _markers,
             onMapCreated: _onMapCreated,
             myLocationEnabled: _askPermission(),
             initialCameraPosition: _initialPosition,
@@ -103,7 +137,7 @@ class _MapPage extends State<MapDisplay> {
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
-                onPressed: updateMarkers,
+                onPressed: () => updateMarkers(),
                 materialTapTargetSize: MaterialTapTargetSize.padded,
                 backgroundColor: Colors.white,
                 child: const Icon(Icons.refresh, size: 30.0),
@@ -176,13 +210,10 @@ class _MapPage extends State<MapDisplay> {
 
   void updateMarkers() async {
      await initiate();
-     setState(() {
-       GoogleMap(markers: setMarkers());
-     });
   }
   
-  Set<Marker> setMarkers() {
-     Set<Marker> _markers = Set();
+  void setMarkers() {
+     _markers = Set();
    _markers.clear();
      //String str = parkMap[0];
    _markers.add(
@@ -191,7 +222,7 @@ class _MapPage extends State<MapDisplay> {
    position: LatLng(42.2805163, -83.7481832),
 
    infoWindow: InfoWindow(title: 'Fourth and Washington Structure', snippet: 'Fourth and Washington Structure'),
-       onTap: () => _onPressed("name", "5")
+       onTap: () => _onPressed("name", Four_and_Wash_Count)
    ),
    );
    _markers.add(
@@ -258,6 +289,5 @@ class _MapPage extends State<MapDisplay> {
        onTap: () => _onPressed('South Ashley Lot', "5" /*, parkMap[8]*/)
    ),
    );
-   return _markers;
    }
 }
