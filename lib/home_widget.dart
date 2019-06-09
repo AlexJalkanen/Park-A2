@@ -10,8 +10,8 @@ class Home extends StatefulWidget {
 
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 1;
-  final List<Widget> _children = [null, Map(), null];
+  int _currentIndex = 0;
+  final List<Widget> _children = [Map(), null];
 
  @override
  Widget build(BuildContext context) {
@@ -29,10 +29,6 @@ class _HomeState extends State<Home> {
        onTap: onTabTapped,
        currentIndex: _currentIndex, // this will be set when a new tab is tapped
        items: [
-         BottomNavigationBarItem(
-           icon: new Icon(Icons.home),
-           title: new Text('Home'),
-         ),
          BottomNavigationBarItem(
            icon: new Icon(Icons.map),
            title: new Text('Map'),
