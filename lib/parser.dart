@@ -27,6 +27,6 @@ Future initiate () async {
       'spaces': intBoi,
     });
   }
-
+  
   return json.encode(parkMap);
 }

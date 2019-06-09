@@ -1,6 +1,7 @@
 import 'dart:async' show Future;
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:a2hackathon/parser.dart' as parser;
 
 class AllStructures {
   List<Structure> structures;
@@ -10,6 +11,15 @@ class AllStructures {
   AllStructures(this.structures);
 }
 
+Future<void> printStructures(AllStructures structure) {
+    for (var struct in structure.structures) {
+      print("Name: ");
+      print(struct.name);
+      print(" Capacity: ");
+      print(struct.capacity);
+    }
+  }
+
 class Structure {
   final int capacity;
   final String name;
@@ -18,13 +28,25 @@ class Structure {
 }
 
 Future<String> _loadDataAsset() async {
-  return await rootBundle.loadString('assets/data/availability.json');
+  return await parser.initiate();
 }
 
-Future<AllStructures> loadData() async {
+Future<void> loadData() async {
   String availability = await _loadDataAsset();
-  AllStructures structures = _parseJsonForAvailability(availability);
-  return structures;
+  var data = await parser.initiate();
+  print("*");
+  print("*");
+  print("*");
+  print("*");
+  print("*");
+  for (var pair in data) {
+    print(pair);
+    print(pair["structure"]);
+    print(pair["spaces"]);
+  }
+  //AllStructures structures = _parseJsonForAvailability(availability);
+  //printStructures(structures);
+  return;
 }
 
 AllStructures _parseJsonForAvailability(String jsonString) {
