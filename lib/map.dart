@@ -18,7 +18,7 @@ class _MapPage extends State<MapDisplay> {
    CameraPosition _initialPosition = CameraPosition(target: _center, zoom: _zoom);
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
-   List<Map<String, dynamic>> parkMap;
+   var parkMap;
 
    @override
    void initState() {
@@ -134,7 +134,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('fourthandwashington'),
    position: LatLng(42.2805163, -83.7481832),
    infoWindow: InfoWindow(title: 'Fourth and Washington Structure', snippet: 'Fourth and Washington Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed("name", parkMap[0])
    ),
    );
    _markers.add(
