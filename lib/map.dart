@@ -150,13 +150,13 @@ class _MapPage extends State<MapDisplay> {
     );
   }
 
-  void _onPressed(String name, String capacity) {
+  void _onPressed(String name, String capacity, String price) {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
           color: Color(0xFF737373),
           height: 270,
           child: Container(
-          child: build_container(name, capacity),
+          child: build_container(name, capacity, price),
           decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.only(
@@ -169,7 +169,7 @@ class _MapPage extends State<MapDisplay> {
       });
   }
 
-  Column build_container (String name, String capacity) {
+  Column build_container (String name, String capacity, String price) {
      return Column(
          children: <Widget>[
          ListTile (
@@ -187,8 +187,9 @@ class _MapPage extends State<MapDisplay> {
              title: RichText(text: TextSpan(
                style: DefaultTextStyle.of(context).style,
                children: <TextSpan>[
-                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 20)),
-                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 18)),
+                 TextSpan(text: 'Available Spots: \n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                 TextSpan(text: capacity, style: TextStyle(fontSize: 18)),
+                 TextSpan(text: '\n'),
                ],
              ),
              ),
@@ -197,8 +198,8 @@ class _MapPage extends State<MapDisplay> {
              title: RichText(text: TextSpan(
                style: DefaultTextStyle.of(context).style,
                children: <TextSpan>[
-                 TextSpan(text: 'Available Spots \n', style: TextStyle(fontSize: 20)),
-                 TextSpan(text: capacity, style: TextStyle(fontSize: 18)),
+                 TextSpan(text: 'Price: \n', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                 TextSpan(text: price, style: TextStyle(fontSize: 18)),
                ],
              ),
              ),
@@ -221,72 +222,72 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('fourthandwashington'),
    position: LatLng(42.2805163, -83.7481832),
 
-   infoWindow: InfoWindow(title: 'Fourth and Washington Structure', snippet: 'Fourth and Washington Structure'),
-       onTap: () => _onPressed("Fourth & Washington Structure", Four_and_Wash_Count)
+   infoWindow: null,
+       onTap: () => _onPressed("Fourth & Washington Structure", Four_and_Wash_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('firstandwashington'),
    position: LatLng(42.2804774, -83.7500788),
-   infoWindow: InfoWindow(title: 'First and Washington Structure', snippet: 'First and Washington Structure'),
-       onTap: () => _onPressed('First & Washington Structure', Fir_and_Wash_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('First & Washington Structure', Fir_and_Wash_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('maynard'),
    position: LatLng(42.2789278, -83.7421086),
-   infoWindow: InfoWindow(title: 'Maynard Structure', snippet: 'Maynard Structure'),
-       onTap: () => _onPressed('Maynard Structure', Maynard_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Maynard Structure', Maynard_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('forest'),
    position: LatLng(42.2743915, -83.733201),
-   infoWindow: InfoWindow(title: 'Forest Structure', snippet: 'Forest Structure'),
-       onTap: () => _onPressed('Forest Structure', Forest_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Forest Structure', Forest_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('fourthandwilliam'),
    position: LatLng(42.2784615, -83.7477646),
-   infoWindow: InfoWindow(title: 'Fourth and William Structure', snippet: 'Fourth and William Structure'),
-       onTap: () => _onPressed('Fourth & William Structure', Four_and_Will_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Fourth & William Structure', Four_and_Will_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('libertysquare'),
    position: LatLng(42.280283, -83.7428007),
-   infoWindow: InfoWindow(title: 'Liberty Square Structure', snippet: 'Liberty Square Structure'),
-       onTap: () => _onPressed('Liberty Square Structure', Lib_Square_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Liberty Square Structure', Lib_Square_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('annashley'),
    position: LatLng(42.2826333, -83.7496376),
-   infoWindow: InfoWindow(title: 'Ann Ashley Structure', snippet: 'Ann Ashley Structure'),
-       onTap: () => _onPressed('Ann Ashley Structure', Ann_Ash_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Ann Ashley Structure', Ann_Ash_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('libertylane'),
    position: LatLng(42.2787552,-83.7455673),
-   infoWindow: InfoWindow(title: 'Liberty Lane Structure', snippet: 'Liberty Lane Structure'),
-       onTap: () => _onPressed('Library Lane Structure', Lib_Lane_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('Library Lane Structure', Lib_Lane_Count, "\$1.20/hour")
    ),
    );
    _markers.add(
    Marker(
    markerId: MarkerId('southashley'),
    position: LatLng(42.2793726, -83.7498497),
-   infoWindow: InfoWindow(title: 'South Ashley Lot', snippet: 'South Ashley Lot'),
-       onTap: () => _onPressed('South Ashley Lot', South_Ash_Count)
+   infoWindow: null,
+       onTap: () => _onPressed('South Ashley Lot', South_Ash_Count, "\$1.70/hour")
    ),
    );
    }
