@@ -31,6 +31,7 @@ class _MapPage extends State<MapDisplay> {
    String Ann_Ash_Count;
    String Lib_Lane_Count;
    String South_Ash_Count;
+   String Price;
 
    Future<void> initiate () async {
      var client = Client();
@@ -188,7 +189,7 @@ class _MapPage extends State<MapDisplay> {
                style: DefaultTextStyle.of(context).style,
                children: <TextSpan>[
                  TextSpan(text: 'Price \n', style: TextStyle(fontSize: 20)),
-                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 18)),
+                 TextSpan(text: Price, style: TextStyle(fontSize: 18)),
                ],
              ),
              ),
@@ -210,6 +211,13 @@ class _MapPage extends State<MapDisplay> {
 
   void updateMarkers() async {
      await initiate();
+     var time = new DateTime.now();
+     if(time.weekday == DateTime.sunday){
+         Price = "free\n";
+     }
+     else {
+       Price = "\$1.20\n";
+     }
   }
   
   void setMarkers() {
