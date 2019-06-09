@@ -16,7 +16,6 @@ Future initiate () async {
   List<Map<String, dynamic>> parkMap = [];
 
   for (var link in links) {
-    var numby = 1;
     var string = link.text;
     var spaces = string.substring(
         (string.indexOf(" - ")) + 3, string.indexOf(" spaces"));
@@ -28,5 +27,5 @@ Future initiate () async {
     });
   }
   
-  return json.encode(parkMap);
+  return parkMap;
 }

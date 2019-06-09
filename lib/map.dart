@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:a2hackathon/parser.dart' as parser;
 
 class MapDisplay extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class MapDisplay extends StatefulWidget {
 
 class _MapPage extends State<MapDisplay> {
    PermissionStatus _status;
-   Set<Marker> _markers = setMarkers();
+   Set<Marker> _markers = Set();
    static const double _zoom = 14.5;
    double lat = 42.281285;
    double long = -83.743932;
@@ -18,6 +19,7 @@ class _MapPage extends State<MapDisplay> {
    CameraPosition _initialPosition = CameraPosition(target: _center, zoom: _zoom);
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
+   List<Map<String, dynamic>> parkMap;
 
    @override
    void initState() {
@@ -65,7 +67,7 @@ class _MapPage extends State<MapDisplay> {
       body: Stack(
         children: <Widget>[
           GoogleMap(
-            markers: _markers,
+            markers: setMarkers(),
             onMapCreated: _onMapCreated,
             myLocationEnabled: _askPermission(),
             initialCameraPosition: _initialPosition,
@@ -86,9 +88,15 @@ class _MapPage extends State<MapDisplay> {
       ),
     );
   }
+
+  void setParkMap() async {
+
+     parkMap = await parser.initiate();
+  }
   
-  static Set<Marker> setMarkers() {
+  Set<Marker> setMarkers() {
      Set<Marker> _markers = Set();
+     setParkMap();
    _markers.clear();
    _markers.add(
    Marker(
