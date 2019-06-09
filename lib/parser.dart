@@ -13,18 +13,17 @@ Future initiate () async {
   var document = parse(response.body);
   List<Element> links = document.querySelectorAll('td');
 
-  List<Map<String, dynamic>> parkMap = [];
+  var parkMap = new List(8);
 
+  var counter = 0;
   for (var link in links) {
     var string = link.text;
     var spaces = string.substring(
         (string.indexOf(" - ")) + 3, string.indexOf(" spaces"));
     var intBoi = int.parse(spaces);
     var structure = string.substring(42, string.indexOf(" - "));
-    parkMap.add({
-      'structure': structure,
-      'spaces': intBoi,
-    });
+    parkMap[counter] = intBoi.toString();
+    ++counter;
   }
   
   return parkMap;

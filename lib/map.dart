@@ -18,7 +18,7 @@ class _MapPage extends State<MapDisplay> {
    CameraPosition _initialPosition = CameraPosition(target: _center, zoom: _zoom);
    MapType _defaultMapType = MapType.normal;
    Completer<GoogleMapController> _controller = Completer();
-   List<Map<String, dynamic>> parkMap;
+   var parkMap;
 
    @override
    void initState() {
@@ -93,43 +93,79 @@ class _MapPage extends State<MapDisplay> {
     parkMap = await parser.initiate();
   }
 
-  void _onPressed(String name, int capacity) {
+  void _onPressed(String name, /*String capacity*/) {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
-          color: Colors.blue[100],
-          height: 350,
-          width: 1000,
-          child: Text.rich(
-            TextSpan(
-              //text: 'Hello', // default text style
-              children: <TextSpan>[
-                TextSpan(text: 'Name \n', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
-                TextSpan(text:  name , style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18)),
-                TextSpan(text:  '\n \n', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18)),
-                TextSpan(text: 'Price \n', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                TextSpan(text: 'price_in', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18)),
-                TextSpan(text:  '\n \n', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18)),
-                TextSpan(text: 'Available Spots \n', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                TextSpan(text: capacity.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18)),
-              ],
+          color: Color(0xFF737373),
+          height: 270,
+          child: Container(
+          child: build_container(name),
+          decoration: BoxDecoration(
+            color: Theme.of(context).canvasColor,
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(20),
+              topRight: const Radius.circular(20),
             ),
           ),
-
+          ),
         );
       });
 
   }
+
+  Column build_container (String name) {
+     return Column(
+         children: <Widget>[
+         ListTile (
+          title: RichText(text: TextSpan(
+             style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(text: '\n'),
+                TextSpan(text: name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                TextSpan(text: '\n'),
+              ],
+              ),
+            ),
+          ),
+           ListTile (
+             title: RichText(text: TextSpan(
+               style: DefaultTextStyle.of(context).style,
+               children: <TextSpan>[
+                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 20)),
+                 TextSpan(text: 'Price \n', style: TextStyle(fontSize: 18)),
+               ],
+             ),
+             ),
+           ),
+           ListTile (
+             title: RichText(text: TextSpan(
+               style: DefaultTextStyle.of(context).style,
+               children: <TextSpan>[
+                 TextSpan(text: 'Available Spots \n', style: TextStyle(fontSize: 20)),
+                 TextSpan(text: 'num spots in \n', style: TextStyle(fontSize: 18)),
+               ],
+             ),
+             ),
+           ),
+
+    //Text('Name'),
+    //Text('Craft beautiful UIs'),
+
+    ]);
+  }
   
   Set<Marker> setMarkers() {
      Set<Marker> _markers = Set();
-     setParkMap();
    _markers.clear();
+     //String str = parkMap[0];
    _markers.add(
    Marker(
    markerId: MarkerId('fourthandwashington'),
    position: LatLng(42.2805163, -83.7481832),
+
    infoWindow: InfoWindow(title: 'Fourth and Washington Structure', snippet: 'Fourth and Washington Structure'),
-       onTap: () => _onPressed("name", 5)
+
+       onTap: () => _onPressed("Fourth & Washington Structure"/*, str*/)
    ),
    );
    _markers.add(
@@ -137,7 +173,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('firstandwashington'),
    position: LatLng(42.2804774, -83.7500788),
    infoWindow: InfoWindow(title: 'First and Washington Structure', snippet: 'First and Washington Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('First & Washington Structure'/*, parkMap[1]*/)
    ),
    );
    _markers.add(
@@ -145,7 +181,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('maynard'),
    position: LatLng(42.2789278, -83.7421086),
    infoWindow: InfoWindow(title: 'Maynard Structure', snippet: 'Maynard Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Maynard Structure'/*, parkMap[2]*/)
    ),
    );
    _markers.add(
@@ -153,7 +189,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('forest'),
    position: LatLng(42.2743915, -83.733201),
    infoWindow: InfoWindow(title: 'Forest Structure', snippet: 'Forest Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Forest Structure'/*, parkMap[3]*/)
    ),
    );
    _markers.add(
@@ -161,7 +197,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('fourthandwilliam'),
    position: LatLng(42.2784615, -83.7477646),
    infoWindow: InfoWindow(title: 'Fourth and William Structure', snippet: 'Fourth and William Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Fourth & William Structure'/*, parkMap[4]*/)
    ),
    );
    _markers.add(
@@ -169,7 +205,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('libertysquare'),
    position: LatLng(42.280283, -83.7428007),
    infoWindow: InfoWindow(title: 'Liberty Square Structure', snippet: 'Liberty Square Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Liberty Square Structure'/*, parkMap[5]*/)
    ),
    );
    _markers.add(
@@ -177,7 +213,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('annashley'),
    position: LatLng(42.2826333, -83.7496376),
    infoWindow: InfoWindow(title: 'Ann Ashley Structure', snippet: 'Ann Ashley Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Ann Ashley Structure' /*, parkMap[6]*/)
    ),
    );
    _markers.add(
@@ -185,7 +221,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('libertylane'),
    position: LatLng(42.2787552,-83.7455673),
    infoWindow: InfoWindow(title: 'Liberty Lane Structure', snippet: 'Liberty Lane Structure'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('Library Lane Structure'/*, parkMap[7]*/)
    ),
    );
    _markers.add(
@@ -193,7 +229,7 @@ class _MapPage extends State<MapDisplay> {
    markerId: MarkerId('southashley'),
    position: LatLng(42.2793726, -83.7498497),
    infoWindow: InfoWindow(title: 'South Ashley Lot', snippet: 'South Ashley Lot'),
-       onTap: () => _onPressed("name", 5)
+       onTap: () => _onPressed('South Ashley Lot'/*, parkMap[8]*/)
    ),
    );
    return _markers;
