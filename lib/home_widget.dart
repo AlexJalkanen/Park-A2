@@ -7,9 +7,9 @@ class Home extends StatefulWidget {
     return _HomeState();
   }
 }
-
-
+bool visible = true;
 class _HomeState extends State<Home> {
+
   int _currentIndex = 0;
   final List<Widget> _children = [MapDisplay(), null];
 
@@ -39,11 +39,16 @@ class _HomeState extends State<Home> {
          )
        ],
      ),
+     
    );
  }
  void onTabTapped(int index) {
-   setState(() {
-     _currentIndex = index;
-   });
+   if (index == 1) {
+     setState(() {
+      //visible = !visible;
+    });
+   }
+   MapDisplay();
+   
  }
 }
