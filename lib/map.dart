@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:html/parser.dart';
-import 'package:html/dom.dart';
+import 'package:html/dom.dart' as dom;
 
 class MapDisplay extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _MapPage extends State<MapDisplay> {
          'https://payment.rpsa2.com/LocationAndRate/SpaceAvailability'
      );
      var document = parse(response.body);
-     List<Element> links = document.querySelectorAll('td');
+     List<dom.Element> links = document.querySelectorAll('td');
 
      parkMap = [];
 
