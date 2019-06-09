@@ -51,6 +51,7 @@ class _MapPage extends State<MapDisplay> {
      super.initState();
      PermissionHandler().checkPermissionStatus(PermissionGroup.locationWhenInUse)
          .then(_updateStatus);
+     updateMarkers();
    }
 
    void _updateStatus(PermissionStatus status) async {
