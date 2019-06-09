@@ -76,7 +76,7 @@ class _MapPage extends State<MapDisplay> {
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
-                onPressed: () => MapDisplay(),
+                onPressed: updateMarkers,
                 materialTapTargetSize: MaterialTapTargetSize.padded,
                 backgroundColor: Colors.white,
                 child: const Icon(Icons.refresh, size: 30.0),
