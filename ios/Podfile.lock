@@ -26,7 +26,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   google_maps_flutter: 924970f41ec509a201b593548db005efb2a09ee9
+<<<<<<< HEAD
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+=======
+  GoogleMaps: 874a4a5ac4dd7fb39c07f82195b9392f82acfc55
+>>>>>>> origin/amandas_part
 
 PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
 
