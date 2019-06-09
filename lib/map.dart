@@ -86,6 +86,7 @@ class _MapPage extends State<MapDisplay> {
      PermissionHandler().checkPermissionStatus(PermissionGroup.locationWhenInUse)
          .then(_updateStatus);
      updateMarkers();
+     setMarkers();
    }
 
    void _updateStatus(PermissionStatus status) async {
@@ -155,7 +156,7 @@ class _MapPage extends State<MapDisplay> {
           color: Color(0xFF737373),
           height: 270,
           child: Container(
-          child: build_container(name),
+          child: build_container(name, capacity),
           decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.only(
@@ -169,7 +170,7 @@ class _MapPage extends State<MapDisplay> {
 
   }
 
-  Column build_container (String name) {
+  Column build_container (String name, String capacity) {
      return Column(
          children: <Widget>[
          ListTile (
@@ -198,7 +199,7 @@ class _MapPage extends State<MapDisplay> {
                style: DefaultTextStyle.of(context).style,
                children: <TextSpan>[
                  TextSpan(text: 'Available Spots \n', style: TextStyle(fontSize: 20)),
-                 TextSpan(text: 'num spots in \n', style: TextStyle(fontSize: 18)),
+                 TextSpan(text: capacity, style: TextStyle(fontSize: 18)),
                ],
              ),
              ),
