@@ -10,8 +10,8 @@ class MapDisplay extends StatefulWidget {
 
 class _MapPage extends State<MapDisplay> {
    PermissionStatus _status;
-   Set<Marker> _markers = Set();
-   static const double _zoom = 11;
+   Set<Marker> _markers = setMarkers();
+   static const double _zoom = 14.5;
    double lat = 42.281285;
    double long = -83.743932;
    static const LatLng _center = const LatLng(42.281285, -83.743932);
@@ -75,10 +75,10 @@ class _MapPage extends State<MapDisplay> {
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
-                onPressed: () => print('button pressed'),
+                onPressed: () => MapDisplay(),
                 materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.map, size: 36.0),
+                backgroundColor: Colors.white,
+                child: const Icon(Icons.refresh, size: 30.0),
               ),
             ),
           ),
@@ -86,7 +86,7 @@ class _MapPage extends State<MapDisplay> {
       ),
     );
   }
-
+  
   static Set<Marker> setMarkers() {
      Set<Marker> _markers = Set();
    _markers.clear();
