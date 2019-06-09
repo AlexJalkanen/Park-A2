@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class Map extends StatefulWidget {
   @override
@@ -8,8 +9,8 @@ class Map extends StatefulWidget {
 }
 
 class _MapPage extends State<Map> {
-   Set<Marker> _markers = Set();
-   static const double _zoom = 11;
+  Set<Marker> _markers = setMarkers();
+   static const double _zoom = 14.5;
    double lat = 42.281285;
    double long = -83.743932;
    static const LatLng _center = const LatLng(42.281285, -83.743932);
@@ -21,13 +22,11 @@ class _MapPage extends State<Map> {
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Map"),
-      ),
+      appBar: null,
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -53,7 +52,8 @@ class _MapPage extends State<Map> {
     );
   }
 
-   void setMarkers(Set<Marker> _markers) {
+  static Set<Marker> setMarkers() {
+     Set<Marker> _markers = Set();
    _markers.clear();
    _markers.add(
    Marker(
@@ -118,5 +118,6 @@ class _MapPage extends State<Map> {
    infoWindow: InfoWindow(title: 'South Ashley Lot', snippet: 'South Ashley Lot')
    ),
    );
+   return _markers;
    }
 }

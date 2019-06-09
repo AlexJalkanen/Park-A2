@@ -16,8 +16,13 @@ class _HomeState extends State<Home> {
  @override
  Widget build(BuildContext context) {
    return Scaffold(
-     appBar: AppBar(
-       title: Text('Park A2'),
+     appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0), 
+        child: AppBar(
+          title: Text('Park A2'),
+          backgroundColor: Colors.white,
+          centerTitle: true
+        )
      ),
      body: _children[_currentIndex],
      bottomNavigationBar: BottomNavigationBar(
