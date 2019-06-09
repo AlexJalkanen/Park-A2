@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Map(), null];
+  final List<Widget> _children = [MapDisplay(), null];
 
  @override
  Widget build(BuildContext context) {
