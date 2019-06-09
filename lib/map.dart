@@ -7,6 +7,9 @@ import 'package:http/http.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart' as dom;
 import 'home_widget.dart';
+import 'package:frideos/frideos.dart';
+import 'package:frideos_core/frideos_core.dart';
+
 
 class MapDisplay extends StatefulWidget {
   @override
@@ -16,6 +19,7 @@ class MapDisplay extends StatefulWidget {
 
 class _MapPage extends State<MapDisplay> {
   
+  final textController = TextEditingController();
    PermissionStatus _status;
    static const double _zoom = 14.5;
    double lat = 42.281285;
@@ -307,6 +311,7 @@ class _MapPage extends State<MapDisplay> {
 
   @override
   Widget build(BuildContext context) {
+    textController.text = bloc.visible.outStream.toString();
     return Scaffold(
       appBar: null,
       body: Stack(
@@ -331,8 +336,13 @@ class _MapPage extends State<MapDisplay> {
               ),
             ),
           ),
-          Visibility(
-            visible: visible,
+           StreamedWidget(
+              stream: bloc.visible.outStream,
+              builder: (context, snapshot) { 
+
+
+                  return Visibility(
+            visible: bloc.visible.value,
             child: Container (
             color: Colors.transparent,
             height: 125,
@@ -374,7 +384,9 @@ class _MapPage extends State<MapDisplay> {
             
             ),
           ),
-          ),
+          );
+            }),
+            
         ],
       ),
     );

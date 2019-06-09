@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frideos_core/frideos_core.dart';
 import 'map.dart';
 
 class Home extends StatefulWidget {
@@ -7,7 +8,22 @@ class Home extends StatefulWidget {
     return _HomeState();
   }
 }
-bool visible = true;
+
+class SingletonBloc {
+  static final SingletonBloc _singletonBloc = new    SingletonBloc._internal();
+  final visible = StreamedValue<bool>();
+  factory SingletonBloc() {
+    return _singletonBloc;
+  }
+  SingletonBloc._internal() {
+    visible.value = true;
+  }
+  dispose() {
+    visible.dispose();
+  }
+}
+final bloc = SingletonBloc();
+
 class _HomeState extends State<Home> {
 
   int _currentIndex = 0;
@@ -45,10 +61,8 @@ class _HomeState extends State<Home> {
  void onTabTapped(int index) {
    if (index == 1) {
      setState(() {
-      //visible = !visible;
+      bloc.visible.value = !bloc.visible.value;
     });
-   }
-   MapDisplay();
-   
+   }   
  }
 }
