@@ -89,7 +89,7 @@ class _MapPage extends State<MapDisplay> {
   }
 
 
-  void setParkMap() async {
+  Future<void> setParkMap() async {
     parkMap = await parser.initiate();
   }
 
@@ -117,12 +117,17 @@ class _MapPage extends State<MapDisplay> {
 
         );
       });
+  }
 
+  void updateMarkers() {
+     setParkMap();
+     setState(() {
+       GoogleMap(markers: setMarkers());
+     });
   }
   
   Set<Marker> setMarkers() {
      Set<Marker> _markers = Set();
-     setParkMap();
    _markers.clear();
    _markers.add(
    Marker(
