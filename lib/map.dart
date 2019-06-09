@@ -10,6 +10,7 @@ import 'package:html/dom.dart' as dom;
 class MapDisplay extends StatefulWidget {
   @override
   _MapPage createState() => _MapPage();
+
 }
 
 class _MapPage extends State<MapDisplay> {
@@ -39,6 +40,7 @@ class _MapPage extends State<MapDisplay> {
      );
      var document = parse(response.body);
      List<dom.Element> links = document.querySelectorAll('td');
+
 
      int count = 0;
      for (var link in links) {
@@ -120,7 +122,13 @@ class _MapPage extends State<MapDisplay> {
    void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
-  
+
+  bool _value1 = false;
+   bool _value2 = false;
+   //bool _value2 = false;
+   void _value1Changed(bool value) => setState(() => _value1 = value);
+   void _value2Changed(bool value) => setState(() => _value2 = value);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,6 +152,34 @@ class _MapPage extends State<MapDisplay> {
                 child: const Icon(Icons.refresh, size: 30.0),
               ),
             ),
+          ),
+          Container (
+            color: Theme.of(context).canvasColor,
+            height: 125,
+            width: 200,
+            child: Align (
+              alignment: Alignment.topLeft,
+                child:
+                new Column (
+                  children: <Widget>[
+                    new CheckboxListTile(
+                      value: _value1,
+                      onChanged: _value1Changed,
+                      title: new Text('Parking Structures'),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      activeColor: Colors.red,
+                    ),
+                    new CheckboxListTile(
+                      value: _value2,
+                      onChanged: _value2Changed,
+                      title: new Text('Street Parking'),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      activeColor: Colors.red,
+                    ),
+                  ],
+                ),
+          )
+
           ),
         ],
       ),
@@ -211,6 +247,8 @@ class _MapPage extends State<MapDisplay> {
   void updateMarkers() async {
      await initiate();
   }
+
+
   
   void setMarkers() {
      _markers = Set();
@@ -290,4 +328,5 @@ class _MapPage extends State<MapDisplay> {
    ),
    );
    }
+
 }
