@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'data/input_parser.dart';
 import 'home_widget.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   Future<AllStructures> structures = loadData();
@@ -13,4 +14,3 @@ void main() {
       ),
   ));
 }
-
